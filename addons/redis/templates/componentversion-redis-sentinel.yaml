@@ -12,6 +12,10 @@ spec:
         - 7.2.7
         - 7.2.4
         - 7.0.6
+    - compDefs:
+        - {{ include "redis5-sentinel.componentDefNamePrefix" . }}
+      releases:
+        - 5.0.10
   releases:
     - name: 7.2.7
       changes:
@@ -27,4 +31,9 @@ spec:
       changes:
       serviceVersion: 7.0.6
       images:
-        redis-sentinel: {{ include "redis-sentinel.repository" . }}:7.0.6-RC4
+        redis-sentinel: apecloud-registry.cn-zhangjiakou.cr.aliyuncs.com/apecloud/redis-stack-server:7.0.6-RC4
+    - name: 5.0.10
+      changes:
+      serviceVersion: 5.0.10
+      images:
+        redis-sentinel: docker.io/redis:5.0.10
