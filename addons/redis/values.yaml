@@ -7,15 +7,19 @@
 ## If specified, the component definition will use it as suffix.
 compDefinitionVersion:
   redis: "7"
+  redis-6: "6"
   sentinel: "7"
   redisCluster: "7"
+  redis6Cluster: "6"
   twemproxy: "0.5"
 
 ## @param componentServiceVersion define default serviceVersion of each Component
 componentServiceVersion:
   redis: "7.2.7"
+  redis6: "6.2.2"
   sentinel: "7.2.7"
   redisCluster: "7.2.7"
+  redis6Cluster: "6.2.2"
   twemproxy: "0.5.0"
 
 image:
@@ -31,6 +35,8 @@ image:
     major7:
       minor70: 7.0.6-RC4
       minor72: 7.2.0-v14
+    major6:
+      minor62: 6.2.2-v5
   apeDts:
     registry: ""
     repository: apecloud/ape-dts
