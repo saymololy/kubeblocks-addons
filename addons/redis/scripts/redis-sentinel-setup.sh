@@ -18,7 +18,11 @@ set -e
       {{- $sentinel_component = $e }}
     {{- else if eq $e.componentDefRef "redis-sentinel" }}
       {{- $sentinel_component = $e }}
+    {{- else if eq $e.componentDefRef "redis6-sentinel" }}
+      {{- $sentinel_component = $e }}
     {{- else if eq $e.componentDefRef "redis-7" }}
+      {{- $redis_component = $e }}
+    {{- else if eq $e.componentDefRef "redis-6" }}
       {{- $redis_component = $e }}
     {{- else if eq $e.componentDefRef "redis" }}
       {{- $redis_component = $e }}
@@ -27,9 +31,13 @@ set -e
   {{- if index $e "componentDef" }}
     {{- if eq $e.componentDef "redis-sentinel-7" }}
       {{- $sentinel_component = $e }}
+    {{- if eq $e.componentDef "redis-sentinel-6" }}
+      {{- $sentinel_component = $e }}
     {{- else if eq $e.componentDef "redis-sentinel" }}
       {{- $sentinel_component = $e }}
     {{- else if eq $e.componentDef "redis-7" }}
+      {{- $redis_component = $e }}
+    {{- else if eq $e.componentDef "redis-6" }}
       {{- $redis_component = $e }}
     {{- else if eq $e.componentDef "redis" }}
       {{- $redis_component = $e }}
