@@ -17,6 +17,17 @@ redis
 {{- end -}}
 
 {{/*
+Define redis6 component defintion name
+*/}}
+{{- define "redis6.componentDefName" -}}
+{{- if eq (len .Values.compDefinitionVersion.redis6) 0 -}}
+redis
+{{- else -}}
+{{- printf "redis-%s" .Values.compDefinitionVersion.redis6 -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
 Define redis component defintion name prefix
 */}}
 {{- define "redis.componentDefNamePrefix" -}}
@@ -56,6 +67,17 @@ Define redis-cluster component defintion name
 redis-cluster
 {{- else -}}
 {{- printf "redis-cluster-%s" .Values.compDefinitionVersion.redisCluster -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
+Define redis6-cluster component defintion name
+*/}}
+{{- define "redis6-cluster.componentDefName" -}}
+{{- if eq (len .Values.compDefinitionVersion.redis6Cluster) 0 -}}
+redis-cluster
+{{- else -}}
+{{- printf "redis-cluster-%s" .Values.compDefinitionVersion.redis6Cluster -}}
 {{- end -}}
 {{- end -}}
 

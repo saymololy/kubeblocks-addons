@@ -7,7 +7,7 @@
 ## If specified, the component definition will use it as suffix.
 compDefinitionVersion:
   redis: "7"
-  redis-6: "6"
+  redis6: "6"
   sentinel: "7"
   redisCluster: "7"
   redis6Cluster: "6"
