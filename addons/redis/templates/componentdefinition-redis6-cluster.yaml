@@ -265,7 +265,7 @@ spec:
       timeoutSeconds: 1
     postProvision:
       customHandler:
-        image: {{ include "redis.image" . }}
+        image: {{ include "redis6.image" . }}
         exec:
           command:
             - /bin/bash
@@ -277,7 +277,7 @@ spec:
           maxRetries: 10
     preTerminate:
       customHandler:
-        image: {{ include "redis.image" . }}
+        image: {{ include "redis6.image" . }}
         exec:
           command:
             - /bin/bash
@@ -287,7 +287,7 @@ spec:
           maxRetries: 10
     memberLeave:
       customHandler:
-        image: {{ include "redis.image" . }}
+        image: {{ include "redis6.image" . }}
         exec:
           command:
             - /bin/bash
@@ -296,7 +296,7 @@ spec:
   runtime:
     containers:
       - name: redis-cluster
-        image: {{ include "redis.image" . }}
+        image: {{ include "redis6.image" . }}
         imagePullPolicy: {{ default "IfNotPresent" .Values.image.pullPolicy }}
         ports:
           - name: redis-cluster
