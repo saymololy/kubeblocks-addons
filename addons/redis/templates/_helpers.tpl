@@ -53,10 +53,28 @@ redis-sentinel
 {{- end -}}
 
 {{/*
+Define redis6-sentinel component defintion name
+*/}}
+{{- define "redis6-sentinel.componentDefName" -}}
+{{- if eq (len .Values.compDefinitionVersion.sentinel6) 0 -}}
+redis-sentinel
+{{- else -}}
+{{- printf "redis-sentinel-%s" .Values.compDefinitionVersion.sentinel6 -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
 Define redis-sentinel component defintion name prefix
 */}}
 {{- define "redis-sentinel.componentDefNamePrefix" -}}
 {{- printf "redis-sentinel-%s" .Values.compDefinitionVersion.sentinel -}}
+{{- end -}}
+
+{{/*
+Define redis6-sentinel component defintion name prefix
+*/}}
+{{- define "redis6-sentinel.componentDefNamePrefix" -}}
+{{- printf "redis-sentinel-%s" .Values.compDefinitionVersion.sentinel6 -}}
 {{- end -}}
 
 {{/*

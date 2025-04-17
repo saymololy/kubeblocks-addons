@@ -12,6 +12,10 @@ spec:
         - 7.2.7
         - 7.2.4
         - 7.0.6
+    - compDefs:
+        - {{ include "redis6-sentinel.componentDefNamePrefix" . }}
+      releases:
+        - 6.2.2
   releases:
     - name: 7.2.7
       changes:
@@ -28,3 +32,8 @@ spec:
       serviceVersion: 7.0.6
       images:
         redis-sentinel: {{ include "redis-sentinel.repository" . }}:7.0.6-RC4
+    - name: 6.2.2
+      changes:
+      serviceVersion: 6.2.2
+      images:
+        redis-sentinel: {{ include "redis-sentinel.repository" . }}:6.2.2-v5
