@@ -21,23 +21,23 @@ spec:
       changes:
       serviceVersion: 7.2.7
       images:
-        redis-cluster: {{ include "redis.repository" . }}:7.2.0-v14
-        metrics: {{ include "metrics.repository" . }}:0.1.2-beta.1
+        redis-cluster: artifacts.iflytek.com/docker-private/cloudnative/redis-stack-server:7.2.0-v14
+        metrics: artifacts.iflytek.com/docker-private/cloudnative/agamotto:0.1.2-beta.1
     - name: 7.2.4
       changes:
       serviceVersion: 7.2.4
       images:
-        redis-cluster: {{ include "redis.repository" . }}:7.2.0-v10
-        metrics: {{ include "metrics.repository" . }}:0.1.2-beta.1
+        redis-cluster: artifacts.iflytek.com/docker-private/cloudnative/redis-stack-server:7.2.0-v10
+        metrics: artifacts.iflytek.com/docker-private/cloudnative/agamotto:0.1.2-beta.1
     - name: 7.0.6
       changes:
       serviceVersion: 7.0.6
       images:
-        redis-cluster: apecloud-registry.cn-zhangjiakou.cr.aliyuncs.com/apecloud/redis-stack-server:7.0.6-RC4
-        metrics: apecloud-registry.cn-zhangjiakou.cr.aliyuncs.com/apecloud/agamotto:0.1.2-beta.1
+        redis-cluster: artifacts.iflytek.com/docker-private/cloudnative/redis-stack-server:7.0.6-RC4
+        metrics: artifacts.iflytek.com/docker-private/cloudnative/agamotto:0.1.2-beta.1
     - name: 5.0.10
       changes:
       serviceVersion: 5.0.10
       images:
-        redis-cluster: docker.io/redis:5.0.10
-        metrics: apecloud-registry.cn-zhangjiakou.cr.aliyuncs.com/apecloud/agamotto:0.1.2-beta.1
+        redis-cluster: artifacts.iflytek.com/docker-private/cloudnative/redis:5.0.10
+        metrics: artifacts.iflytek.com/docker-private/cloudnative/agamotto:0.1.2-beta.1
