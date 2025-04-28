@@ -47,8 +47,8 @@ spec:
     scrapePort: http-metrics
   configs:
     - name: redis-cluster-config
-      templateRef: redis-cluster7-config-template
-      constraintRef: redis-cluster7-config-constraints
+      templateRef: redis-cluster6-config-template
+      constraintRef: redis-cluster6-config-constraints
       namespace: {{ .Release.Namespace }}
       volumeName: redis-cluster-config
       reRenderResourceTypes:

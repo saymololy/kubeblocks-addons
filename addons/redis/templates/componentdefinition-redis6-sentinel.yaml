@@ -38,8 +38,8 @@ spec:
     {{- end }}
   configs:
     - name: redis-replication-config
-      templateRef: redis7-config-template
-      constraintRef: redis7-config-constraints
+      templateRef: redis6-config-template
+      constraintRef: redis6-config-constraints
       namespace: {{ .Release.Namespace }}
       volumeName: redis-config
   scripts:

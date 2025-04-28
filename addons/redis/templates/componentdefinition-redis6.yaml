@@ -6,7 +6,7 @@ metadata:
     {{- include "redis.labels" . | nindent 4 }}
 spec:
   provider: kubeblocks
-  description: A Redis v7.0 component definition for Kubernetes
+  description: A Redis v6.0 component definition for Kubernetes
   serviceKind: redis
   serviceVersion: {{ .Values.componentServiceVersion.redis6 }}
   services:
@@ -51,8 +51,8 @@ spec:
     scrapePort: http-metrics
   configs:
     - name: redis-replication-config
-      templateRef: redis7-config-template
-      constraintRef: redis7-config-constraints
+      templateRef: redis6-config-template
+      constraintRef: redis6-config-constraints
       namespace: {{ .Release.Namespace }}
       volumeName: redis-config
       reRenderResourceTypes:
@@ -159,7 +159,7 @@ spec:
       valueFrom:
         credentialVarRef:
           ## reference the redis-sentinel component definition name
-          compDef: {{ include "redis-sentinel.componentDefName" . }}
+          compDef: {{ include "redis6-sentinel.componentDefName" . }}
           name: default
           optional: true
           username: Optional
@@ -168,36 +168,36 @@ spec:
       valueFrom:
         credentialVarRef:
           ## reference the redis-sentinel component definition name
-          compDef: {{ include "redis-sentinel.componentDefName" . }}
+          compDef: {{ include "redis6-sentinel.componentDefName" . }}
           name: default
           optional: true
           password: Optional
     - name: SENTINEL_COMPONENT_DEFINITION_NAME
-      value: {{ include "redis-sentinel.componentDefName" . }}
+      value: {{ include "redis6-sentinel.componentDefName" . }}
     - name: SENTINEL_COMPONENT_NAME
       valueFrom:
         componentVarRef:
-          compDef: {{ include "redis-sentinel.componentDefName" . }}
+          compDef: {{ include "redis6-sentinel.componentDefName" . }}
           optional: true
           componentName: Optional
     - name: SENTINEL_HEADLESS_SERVICE_NAME
       valueFrom:
         serviceVarRef:
-          compDef: {{ include "redis-sentinel.componentDefName" . }}
+          compDef: {{ include "redis6-sentinel.componentDefName" . }}
           name: headless
           optional: true
           host: Optional
     - name: SENTINEL_POD_NAME_LIST
       valueFrom:
         componentVarRef:
-          compDef: {{ include "redis-sentinel.componentDefName" . }}
+          compDef: {{ include "redis6-sentinel.componentDefName" . }}
           optional: true
           instanceNames: Optional
     ## the redis sentinel server port, if redis sentinel is in host network mode, the port will be allocated automatically by KubeBlocks, if not, the default port is 26379
     - name: SENTINEL_SERVICE_PORT
       valueFrom:
         hostNetworkVarRef:
-          compDef: {{ include "redis-sentinel.componentDefName" . }}
+          compDef: {{ include "redis6-sentinel.componentDefName" . }}
           optional: true
           container:
             name: redis-sentinel
