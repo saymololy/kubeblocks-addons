@@ -21,19 +21,19 @@ spec:
       changes:
       serviceVersion: 7.2.7
       images:
-        redis-sentinel: {{ include "redis.repository" . }}:7.2.0-v14
+        redis-sentinel: artifacts.iflytek.com/docker-private/cloudnative/redis-stack-server:7.2.0-v14
     - name: 7.2.4
       changes:
       serviceVersion: 7.2.4
       images:
-        redis-sentinel: {{ include "redis-sentinel.repository" . }}:7.2.0-v10
+        redis-sentinel: artifacts.iflytek.com/docker-private/cloudnative/redis-stack-server:7.2.0-v10
     - name: 7.0.6
       changes:
       serviceVersion: 7.0.6
       images:
-        redis-sentinel: apecloud-registry.cn-zhangjiakou.cr.aliyuncs.com/apecloud/redis-stack-server:7.0.6-RC4
+        redis-sentinel: artifacts.iflytek.com/docker-private/cloudnative/redis-stack-server:7.0.6-RC4
     - name: 5.0.10
       changes:
       serviceVersion: 5.0.10
       images:
-        redis-sentinel: docker.io/redis:5.0.10
+        redis-sentinel: artifacts.iflytek.com/docker-private/cloudnative/redis:5.0.10
