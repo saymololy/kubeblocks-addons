@@ -1,14 +1,14 @@
 apiVersion: apps.kubeblocks.io/v1alpha1
 kind: ComponentDefinition
 metadata:
-  name: {{ include "redis5-sentinel.componentDefName" . }}
+  name: {{ include "redis6-sentinel.componentDefName" . }}
   labels:
     {{- include "redis.labels" . | nindent 4 }}
 spec:
   provider: kubeblocks
-  description: A Redis Sentinel v5.0 component definition for Kubernetes
+  description: A Redis Sentinel v6.0 component definition for Kubernetes
   serviceKind: redis-sentinel
-  serviceVersion: {{ .Values.componentServiceVersion.sentinel5 }}
+  serviceVersion: {{ .Values.componentServiceVersion.sentinel6 }}
   services:
     - name: redis-sentinel
       serviceName: redis-sentinel
@@ -38,8 +38,8 @@ spec:
     {{- end }}
   configs:
     - name: redis-replication-config
-      templateRef: redis5-config-template
-      constraintRef: redis5-config-constraints
+      templateRef: redis6-config-template
+      constraintRef: redis6-config-constraints
       namespace: {{ .Release.Namespace }}
       volumeName: redis-config
   scripts:
@@ -63,7 +63,7 @@ spec:
       valueFrom:
         credentialVarRef:
           ## reference the redis-sentinel component definition name
-          compDef: {{ include "redis5-sentinel.componentDefName" . }}
+          compDef: {{ include "redis6-sentinel.componentDefName" . }}
           name: default
           optional: false
           username: Required
@@ -72,14 +72,14 @@ spec:
       valueFrom:
         credentialVarRef:
           ## reference the redis-sentinel component definition name
-          compDef: {{ include "redis5-sentinel.componentDefName" . }}
+          compDef: {{ include "redis6-sentinel.componentDefName" . }}
           name: default
           optional: false
           password: Required
   runtime:
     containers:
     - name: redis-sentinel
-      image: {{ include "redis5-sentinel.image" . }}
+      image: {{ include "redis6-sentinel.image" . }}
       imagePullPolicy: IfNotPresent
       ports:
         - containerPort: 26379
@@ -98,7 +98,7 @@ spec:
         - -c
         - |
           set -e
-          /scripts/redis-5-sentinel-start-v2.sh
+          /scripts/redis-6-sentinel-start-v2.sh
       livenessProbe:
         initialDelaySeconds: 10
         periodSeconds: 5

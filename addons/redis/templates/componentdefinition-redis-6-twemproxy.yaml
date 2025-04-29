@@ -1,7 +1,7 @@
 apiVersion: apps.kubeblocks.io/v1alpha1
 kind: ComponentDefinition
 metadata:
-  name: {{ include "redis-5-twemproxy.componentDefName" . }}
+  name: {{ include "redis-6-twemproxy.componentDefName" . }}
   labels:
     {{- include "redis.labels" . | nindent 4 }}
 spec:
@@ -33,7 +33,7 @@ spec:
     - name: REDIS_SERVICE_NAMES
       valueFrom:
         serviceVarRef:
-          compDef: {{ include "redis5.componentDefName" . }}
+          compDef: {{ include "redis6.componentDefName" . }}
           name: redis
           optional: false
           host: Required
@@ -43,7 +43,7 @@ spec:
     - name: REDIS_SERVICE_PORTS
       valueFrom:
         serviceVarRef:
-          compDef: {{ include "redis5.componentDefName" . }}
+          compDef: {{ include "redis6.componentDefName" . }}
           name: redis
           optional: false
           port:
@@ -56,7 +56,7 @@ spec:
       valueFrom:
         credentialVarRef:
           ## reference the current component definition name
-          compDef: {{ include "redis5.componentDefName" . }}
+          compDef: {{ include "redis6.componentDefName" . }}
           name: default
           username: Required
           multipleClusterObjectOption:
@@ -66,7 +66,7 @@ spec:
       valueFrom:
         credentialVarRef:
           ## reference the current component definition name
-          compDef: {{ include "redis5.componentDefName" . }}
+          compDef: {{ include "redis6.componentDefName" . }}
           name: default
           password: Required
           multipleClusterObjectOption:

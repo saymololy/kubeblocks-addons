@@ -11,7 +11,7 @@ spec:
       releases:
         - 0.5.0
     - compDefs:
-        - {{ include "redis-5-twemproxy.componentDefNamePrefix" . }}
+        - {{ include "redis-6-twemproxy.componentDefNamePrefix" . }}
       releases:
         - 0.5.0
   releases:

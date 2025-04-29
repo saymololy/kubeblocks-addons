@@ -13,9 +13,9 @@ spec:
         - 7.2.4
         - 7.0.6
     - compDefs:
-        - {{ include "redis5.componentDefNamePrefix" . }}
+        - {{ include "redis6.componentDefNamePrefix" . }}
       releases:
-        - 5.0.10
+        - 6.2.6
   releases:
     - name: 7.2.7
       changes:
@@ -33,11 +33,11 @@ spec:
       changes:
       serviceVersion: 7.0.6
       images:
-        redis: apecloud-registry.cn-zhangjiakou.cr.aliyuncs.com/apecloud/redis-stack-server:7.0.6-RC4
+        redis: artifacts.iflytek.com/docker-private/cloudnative/redis-stack-server:7.0.6-RC4
         metrics: artifacts.iflytek.com/docker-private/cloudnative/agamotto:0.1.2-beta.1
-    - name: 5.0.10
+    - name: 6.2.6
       changes:
-      serviceVersion: 5.0.10
+      serviceVersion: 6.2.6
       images:
-        redis: artifacts.iflytek.com/docker-private/cloudnative/redis:5.0.10
+        redis: artifacts.iflytek.com/docker-private/cloudnative/redis-stack-server:6.2.6-v19
         metrics: artifacts.iflytek.com/docker-private/cloudnative/agamotto:0.1.2-beta.1

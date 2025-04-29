@@ -1,14 +1,14 @@
 apiVersion: apps.kubeblocks.io/v1alpha1
 kind: ComponentDefinition
 metadata:
-  name: {{ include "redis5.componentDefName" . }}
+  name: {{ include "redis6.componentDefName" . }}
   labels:
     {{- include "redis.labels" . | nindent 4 }}
 spec:
   provider: kubeblocks
-  description: A Redis v5.0 component definition for Kubernetes
+  description: A Redis v6.0 component definition for Kubernetes
   serviceKind: redis
-  serviceVersion: {{ .Values.componentServiceVersion.redis5 }}
+  serviceVersion: {{ .Values.componentServiceVersion.redis6 }}
   services:
     - name: redis
       serviceName: redis
@@ -47,16 +47,16 @@ spec:
     {{- end }}
   configs:
     - name: redis-replication-config
-      templateRef: redis5-config-template
-      constraintRef: redis5-config-constraints
+      templateRef: redis6-config-template
+      constraintRef: redis6-config-constraints
       namespace: {{ .Release.Namespace }}
       volumeName: redis-config
       reRenderResourceTypes:
         - vscale
-    - name: redis5-metrics-config
-      templateRef: redis5-metrics-config
+    - name: redis6-metrics-config
+      templateRef: redis6-metrics-config
       namespace: {{ .Release.Namespace }}
-      volumeName: redis5-metrics-config
+      volumeName: redis6-metrics-config
       defaultMode: 0444
   scripts:
     - name: redis-scripts
@@ -79,7 +79,7 @@ spec:
       valueFrom:
         credentialVarRef:
           ## reference the current component definition name
-          compDef: {{ include "redis5.componentDefName" . }}
+          compDef: {{ include "redis6.componentDefName" . }}
           name: default
           username: Required
     ## the default password of redis connection
@@ -87,14 +87,14 @@ spec:
       valueFrom:
         credentialVarRef:
           ## reference the current component definition name
-          compDef: {{ include "redis5.componentDefName" . }}
+          compDef: {{ include "redis6.componentDefName" . }}
           name: default
           password: Required
     ## the redis advertised service port list for each pod, the value format is "pod1Svc:nodeport1,pod2Svc:nodeport2,..."
     - name: REDIS_ADVERTISED_PORT
       valueFrom:
         serviceVarRef:
-          compDef: {{ include "redis5.componentDefName" . }}
+          compDef: {{ include "redis6.componentDefName" . }}
           name: redis-advertised
           optional: true
           port:
@@ -104,7 +104,7 @@ spec:
     - name: REDIS_ADVERTISED_SVC_NAME
       valueFrom:
         serviceVarRef:
-          compDef: {{ include "redis5.componentDefName" . }}
+          compDef: {{ include "redis6.componentDefName" . }}
           name: redis-advertised
           optional: true
           host: Required
@@ -113,7 +113,7 @@ spec:
       valueFrom:
         credentialVarRef:
           ## reference the redis-sentinel component definition name
-          compDef: {{ include "redis5-sentinel.componentDefName" . }}
+          compDef: {{ include "redis6-sentinel.componentDefName" . }}
           name: default
           optional: true
           username: Optional
@@ -122,29 +122,29 @@ spec:
       valueFrom:
         credentialVarRef:
           ## reference the redis-sentinel component definition name
-          compDef: {{ include "redis5-sentinel.componentDefName" . }}
+          compDef: {{ include "redis6-sentinel.componentDefName" . }}
           name: default
           optional: true
           password: Optional
     - name: SENTINEL_COMPONENT_DEFINITION_NAME
-      value: {{ include "redis5-sentinel.componentDefName" . }}
+      value: {{ include "redis6-sentinel.componentDefName" . }}
     - name: SENTINEL_COMPONENT_NAME
       valueFrom:
         componentVarRef:
-          compDef: {{ include "redis5-sentinel.componentDefName" . }}
+          compDef: {{ include "redis6-sentinel.componentDefName" . }}
           optional: true
           componentName: Optional
     - name: SENTINEL_HEADLESS_SERVICE_NAME
       valueFrom:
         serviceVarRef:
-          compDef: {{ include "redis5-sentinel.componentDefName" . }}
+          compDef: {{ include "redis6-sentinel.componentDefName" . }}
           name: headless
           optional: true
           host: Optional
     - name: SENTINEL_SERVICE_PORT
       valueFrom:
         serviceVarRef:
-          compDef: {{ include "redis5-sentinel.componentDefName" . }}
+          compDef: {{ include "redis6-sentinel.componentDefName" . }}
           name: redis-sentinel
           optional: true
           port:
@@ -153,7 +153,7 @@ spec:
     - name: SENTINEL_POD_NAME_LIST
       valueFrom:
         componentVarRef:
-          compDef: {{ include "redis5-sentinel.componentDefName" . }}
+          compDef: {{ include "redis6-sentinel.componentDefName" . }}
           optional: true
           instanceNames: Optional
   lifecycleActions:
@@ -163,17 +163,17 @@ spec:
       timeoutSeconds: 1
     postProvision:
       customHandler:
-        image: {{ include "redis5.image" . }}
+        image: {{ include "redis6.image" . }}
         exec:
           command:
             - /bin/bash
             - -c
-            - /scripts/redis-5-register-to-sentinel.sh
+            - /scripts/redis-6-register-to-sentinel.sh
         preCondition: RuntimeReady
   runtime:
     containers:
       - name: redis
-        image: {{ include "redis5.image" . }}
+        image: {{ include "redis6.image" . }}
         imagePullPolicy: {{ default "IfNotPresent" .Values.image.pullPolicy }}
         ports:
           - name: redis
@@ -205,7 +205,7 @@ spec:
           ## the password of redis for redis sentinel connection
           - name: REDIS_SENTINEL_PASSWORD
             value: $(REDIS_DEFAULT_PASSWORD)
-        command: [ "/scripts/redis-5-start.sh" ]
+        command: [ "/scripts/redis-6-start.sh" ]
         readinessProbe:
           initialDelaySeconds: 10
           periodSeconds: 5
@@ -232,12 +232,12 @@ spec:
             value: $(REDIS_DEFAULT_PASSWORD)
         command:
           - "/bin/agamotto"
-          - "--config=/opt/conf/metrics-config-5.yaml"
+          - "--config=/opt/conf/metrics-config-6.yaml"
         ports:
           - name: http-metrics
             containerPort: {{ .Values.metrics.service.port }}
         volumeMounts:
-          - name: redis5-metrics-config
+          - name: redis6-metrics-config
             mountPath: /opt/conf
     volumes:
       ## deprecated since v0.8.3, do not use it

@@ -1,16 +1,17 @@
-{{- $cc := .Files.Get "config/redis5-config-effect-scope.yaml" | fromYaml }}
+{{- $cc := .Files.Get "config/redis6-config-effect-scope.yaml" | fromYaml }}
 apiVersion: apps.kubeblocks.io/v1beta1
 kind: ConfigConstraint
 metadata:
-  name: redis-cluster5-config-constraints
+  name: redis6-config-constraints
   labels:
     {{- include "redis.labels" . | nindent 4 }}
 spec:
+
   # ConfigurationSchema that impose restrictions on engine parameter's rule
   parametersSchema:
     topLevelKey: RedisParameter
     cue: |-
-      {{- .Files.Get "config/redis-cluster5-config-constraint.cue" | nindent 6 }}
+      {{- .Files.Get "config/redis6-config-constraint.cue" | nindent 6 }}
 
   ## require db instance restart
   {{- if hasKey $cc "staticParameters" }}

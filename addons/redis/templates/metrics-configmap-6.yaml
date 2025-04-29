@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: redis5-metrics-config
+  name: redis6-metrics-config
   labels:
     {{- include "redis.labels" . | nindent 4 }}
 data:
-  metrics-config-5.yaml: |-
+  metrics-config-6.yaml: |-
     extensions:
       memory_ballast:
         size_mib: 32
