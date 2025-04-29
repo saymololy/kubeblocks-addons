@@ -15,11 +15,20 @@ redis
 {{- printf "redis-%s" .Values.compDefinitionVersion.redis -}}
 {{- end -}}
 {{- end -}}
+
 {{- define "redis6.componentDefName" -}}
 {{- if eq (len .Values.compDefinitionVersion.redis6) 0 -}}
 redis
 {{- else -}}
 {{- printf "redis-%s" .Values.compDefinitionVersion.redis6 -}}
+{{- end -}}
+{{- end -}}
+
+{{- define "redis5.componentDefName" -}}
+{{- if eq (len .Values.compDefinitionVersion.redis5) 0 -}}
+redis
+{{- else -}}
+{{- printf "redis-%s" .Values.compDefinitionVersion.redis5 -}}
 {{- end -}}
 {{- end -}}
 
@@ -29,8 +38,13 @@ Define redis component defintion name prefix
 {{- define "redis.componentDefNamePrefix" -}}
 {{- printf "redis-%s" .Values.compDefinitionVersion.redis -}}
 {{- end -}}
+
 {{- define "redis6.componentDefNamePrefix" -}}
 {{- printf "redis-%s" .Values.compDefinitionVersion.redis6 -}}
+{{- end -}}
+
+{{- define "redis5.componentDefNamePrefix" -}}
+{{- printf "redis-%s" .Values.compDefinitionVersion.redis5 -}}
 {{- end -}}
 
 {{/*
@@ -43,11 +57,20 @@ redis-sentinel
 {{- printf "redis-sentinel-%s" .Values.compDefinitionVersion.sentinel -}}
 {{- end -}}
 {{- end -}}
+
 {{- define "redis6-sentinel.componentDefName" -}}
 {{- if eq (len .Values.compDefinitionVersion.sentinel6) 0 -}}
 redis-sentinel
 {{- else -}}
 {{- printf "redis-sentinel-%s" .Values.compDefinitionVersion.sentinel6 -}}
+{{- end -}}
+{{- end -}}
+
+{{- define "redis5-sentinel.componentDefName" -}}
+{{- if eq (len .Values.compDefinitionVersion.sentinel5) 0 -}}
+redis-sentinel
+{{- else -}}
+{{- printf "redis-sentinel-%s" .Values.compDefinitionVersion.sentinel5 -}}
 {{- end -}}
 {{- end -}}
 
@@ -57,8 +80,13 @@ Define redis-sentinel component defintion name prefix
 {{- define "redis-sentinel.componentDefNamePrefix" -}}
 {{- printf "redis-sentinel-%s" .Values.compDefinitionVersion.sentinel -}}
 {{- end -}}
+
 {{- define "redis6-sentinel.componentDefNamePrefix" -}}
 {{- printf "redis-sentinel-%s" .Values.compDefinitionVersion.sentinel6 -}}
+{{- end -}}
+
+{{- define "redis5-sentinel.componentDefNamePrefix" -}}
+{{- printf "redis-sentinel-%s" .Values.compDefinitionVersion.sentinel5 -}}
 {{- end -}}
 
 {{/*
@@ -71,11 +99,20 @@ redis-cluster
 {{- printf "redis-cluster-%s" .Values.compDefinitionVersion.redisCluster -}}
 {{- end -}}
 {{- end -}}
+
 {{- define "redis6-cluster.componentDefName" -}}
 {{- if eq (len .Values.compDefinitionVersion.redisCluster6) 0 -}}
 redis-cluster
 {{- else -}}
 {{- printf "redis-cluster-%s" .Values.compDefinitionVersion.redisCluster6 -}}
+{{- end -}}
+{{- end -}}
+
+{{- define "redis5-cluster.componentDefName" -}}
+{{- if eq (len .Values.compDefinitionVersion.redisCluster5) 0 -}}
+redis-cluster
+{{- else -}}
+{{- printf "redis-cluster-%s" .Values.compDefinitionVersion.redisCluster5 -}}
 {{- end -}}
 {{- end -}}
 
@@ -85,8 +122,13 @@ Define redis-cluster component defintion name prefix
 {{- define "redis-cluster.componentDefNamePrefix" -}}
 {{- printf "redis-cluster-%s" .Values.compDefinitionVersion.redisCluster -}}
 {{- end -}}
+
 {{- define "redis6-cluster.componentDefNamePrefix" -}}
 {{- printf "redis-cluster-%s" .Values.compDefinitionVersion.redisCluster6 -}}
+{{- end -}}
+
+{{- define "redis5-cluster.componentDefNamePrefix" -}}
+{{- printf "redis-cluster-%s" .Values.compDefinitionVersion.redisCluster5 -}}
 {{- end -}}
 
 {{/*
@@ -99,11 +141,20 @@ redis-twemproxy
 {{- printf "redis-twemproxy-%s" .Values.compDefinitionVersion.twemproxy -}}
 {{- end -}}
 {{- end -}}
+
 {{- define "redis-6-twemproxy.componentDefName" -}}
 {{- if eq (len .Values.compDefinitionVersion.twemproxy) 0 -}}
 redis-twemproxy
 {{- else -}}
 {{- printf "redis-twemproxy-6-%s" .Values.compDefinitionVersion.twemproxy -}}
+{{- end -}}
+{{- end -}}
+
+{{- define "redis-5-twemproxy.componentDefName" -}}
+{{- if eq (len .Values.compDefinitionVersion.twemproxy) 0 -}}
+redis-twemproxy
+{{- else -}}
+{{- printf "redis-twemproxy-5-%s" .Values.compDefinitionVersion.twemproxy -}}
 {{- end -}}
 {{- end -}}
 
@@ -113,8 +164,13 @@ Define redis-twemproxy component defintion name prefix
 {{- define "redis-twemproxy.componentDefNamePrefix" -}}
 {{- printf "redis-twemproxy-%s" .Values.compDefinitionVersion.twemproxy -}}
 {{- end -}}
+
 {{- define "redis-6-twemproxy.componentDefNamePrefix" -}}
 {{- printf "redis-twemproxy-6-%s" .Values.compDefinitionVersion.twemproxy -}}
+{{- end -}}
+
+{{- define "redis-5-twemproxy.componentDefNamePrefix" -}}
+{{- printf "redis-twemproxy-5-%s" .Values.compDefinitionVersion.twemproxy -}}
 {{- end -}}
 
 {{/*
@@ -177,6 +233,10 @@ Define image
 {{ .Values.image.registry | default "docker.io" }}/{{ .Values.image.repository }}:{{ .Values.image.tag.major6.minor62 }}
 {{- end }}
 
+{{- define "redis5.image" -}}
+{{ .Values.CommunityEditionImage.registry | default "docker.io" }}/{{ .Values.CommunityEditionImage.repository }}:{{ .Values.CommunityEditionImage.tag.major5.minor50 }}
+{{- end }}
+
 {{- define "redis-sentinel.repository" -}}
 {{ .Values.image.registry | default "docker.io" }}/{{ .Values.image.repository }}
 {{- end }}
@@ -187,6 +247,10 @@ Define image
 
 {{- define "redis6-sentinel.image" -}}
 {{ .Values.image.registry | default "docker.io" }}/{{ .Values.image.repository }}:{{ .Values.image.tag.major6.minor62 }}
+{{- end }}
+
+{{- define "redis5-sentinel.image" -}}
+{{ .Values.CommunityEditionImage.registry | default "docker.io" }}/{{ .Values.CommunityEditionImage.repository }}:{{ .Values.CommunityEditionImage.tag.major5.minor50 }}
 {{- end }}
 
 {{- define "redis-twemproxy.repository" -}}

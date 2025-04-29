@@ -15,6 +15,8 @@ set -ex
       {{- $redis_component = $e }}
     {{- else if eq $e.componentDefRef "redis-6" }}
       {{- $redis_component = $e }}
+    {{- else if eq $e.componentDefRef "redis-5" }}
+      {{- $redis_component = $e }}
     {{- else if eq $e.componentDefRef "redis" }}
       {{- $redis_component = $e }}
     {{- end }}
@@ -27,6 +29,8 @@ set -ex
     {{- else if eq $e.componentDef "redis-7" }}
       {{- $redis_component = $e }}
     {{- else if eq $e.componentDef "redis-6" }}
+      {{- $redis_component = $e }}
+    {{- else if eq $e.componentDef "redis-5" }}
       {{- $redis_component = $e }}
     {{- else if eq $e.componentDef "redis" }}
       {{- $redis_component = $e }}
