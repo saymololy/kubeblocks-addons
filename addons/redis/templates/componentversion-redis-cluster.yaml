@@ -44,6 +44,7 @@ spec:
       serviceVersion: 6.2.6
       images:
         redis-cluster: artifacts.iflytek.com/docker-private/cloudnative/redis-stack-server:6.2.6-v19
+        metrics: artifacts.iflytek.com/docker-private/cloudnative/agamotto:0.1.2-beta.1
     - name: 5.0.10
       changes:
       serviceVersion: 5.0.10

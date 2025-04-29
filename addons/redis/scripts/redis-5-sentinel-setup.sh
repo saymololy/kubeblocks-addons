@@ -16,11 +16,15 @@ set -e
     {{- /* xxxx-7 suffix just for compatible config render do not panic, this script has been deprecated in KubeBlock v0.10 */}}
     {{- if eq $e.componentDefRef "redis-sentinel-7" }}
       {{- $sentinel_component = $e }}
+    {{- else if eq $e.componentDefRef "redis-sentinel-6" }}
+      {{- $sentinel_component = $e }}
     {{- else if eq $e.componentDefRef "redis-sentinel-5" }}
       {{- $sentinel_component = $e }}
     {{- else if eq $e.componentDefRef "redis-sentinel" }}
       {{- $sentinel_component = $e }}
     {{- else if eq $e.componentDefRef "redis-7" }}
+      {{- $redis_component = $e }}
+    {{- else if eq $e.componentDefRef "redis-6" }}
       {{- $redis_component = $e }}
     {{- else if eq $e.componentDefRef "redis-5" }}
       {{- $redis_component = $e }}
@@ -31,11 +35,15 @@ set -e
   {{- if index $e "componentDef" }}
     {{- if eq $e.componentDef "redis-sentinel-7" }}
       {{- $sentinel_component = $e }}
+    {{- else if eq $e.componentDef "redis-sentinel-6" }}
+      {{- $sentinel_component = $e }}
     {{- else if eq $e.componentDef "redis-sentinel-5" }}
       {{- $sentinel_component = $e }}
     {{- else if eq $e.componentDef "redis-sentinel" }}
       {{- $sentinel_component = $e }}
     {{- else if eq $e.componentDef "redis-7" }}
+      {{- $redis_component = $e }}
+    {{- else if eq $e.componentDef "redis-6" }}
       {{- $redis_component = $e }}
     {{- else if eq $e.componentDef "redis-5" }}
       {{- $redis_component = $e }}
